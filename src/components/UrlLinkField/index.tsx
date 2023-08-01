@@ -41,7 +41,10 @@ export const UrlLinkField: FC<UrlFieldProps> = memo(props => {
 
             </Link>
             <div>
-                <Button onClick={ () =>onClick} title="Edit">Edit</Button>
+                <Button onClick={ (event) =>{
+                    onClick && onClick(event)
+                    console.log("url click")
+                }} title="Edit">Edit</Button>
             </div>
         </div>
     );
@@ -53,7 +56,7 @@ UrlLinkField.displayName = 'UrlLinkField';
 export interface UrlFieldProps
     extends PublicFieldProps,
         InjectedFieldProps,
-        AnchorHTMLAttributes<HTMLAnchorElement> {}
+        React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
 // useful to prevent click bubbling in a Datagrid with rowClick
 const stopPropagation = (e: MouseEvent) => e.stopPropagation();
