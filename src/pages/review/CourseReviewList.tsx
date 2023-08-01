@@ -1,9 +1,12 @@
 import ReviewTip from "@/components/ChipTip/ReviewTip"
 import { Datagrid, DateField, FunctionField, List, TextField, WrapperField } from "react-admin"
+// import RenderAction, { renderAction } from "./common"
+import { ReviewType } from "@/common/types"
+import RenderAction from "./common"
 
- const AppliedReview = ()=>{
+ const courseReviewList = ()=>{
     return <>
-    <List resource="review" disableSyncWithLocation actions={false}>
+    <List resource="review" filter={{'type':'course'}} disableSyncWithLocation actions={false}>
         <Datagrid bulkActionButtons={false}>
             <WrapperField label="Title">
                 <TextField source="title"/>
@@ -19,9 +22,14 @@ import { Datagrid, DateField, FunctionField, List, TextField, WrapperField } fro
               <ReviewTip review={review} />
             )}
           />
+          <FunctionField label="Action" render={({refId, type, parentId}: {refId: string,type:ReviewType, parentId: string})=>(
+            <RenderAction id={refId} type={type} optId={parentId}  />
+            // renderAction(refId,type)
+            )
+          }/>
         </Datagrid>
 
     </List>
     </>
 }
-export default AppliedReview
+export default courseReviewList
