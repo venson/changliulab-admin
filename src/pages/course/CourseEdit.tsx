@@ -1,3 +1,4 @@
+
 import MdInput from "@/components/MdInput";
 import { useRef } from "react";
 import { Edit, SaveButton, SimpleForm, TextInput, useRecordContext } from "react-admin";
@@ -9,7 +10,7 @@ const Title = ()=>{
     return <span>Methodology: {record ? `${record.title}`: ''}</span>
 }
 
-const MethodologyEdit = ()=>{
+const CourseEdit = ()=>{
 
   const markdownRef = useRef<any>(); // add type any to the useRef hook
 const RenderActions = () => {
@@ -29,4 +30,4 @@ const RenderActions = () => {
     )
 
 }
-export default MethodologyEdit;
+export default CourseEdit;

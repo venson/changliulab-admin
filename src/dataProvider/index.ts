@@ -1,3 +1,4 @@
+import { QueryClient } from 'react-query';
 import {
   CreateParams,
   CreateResult,
@@ -67,12 +68,18 @@ export const dataProvier: DataProvider = {
     resource: string,
     params: GetOneParams<any>
   ): Promise<GetOneResult<RecordType>> {
+    const meta = params.meta ?JSON.stringify(params.meta):undefined;
+    // const query = meta? `?${stringify(meta)}` :''
+    // console.log('param',params)
+    // console.log('meta',params)
+    const query = params.meta? `?${stringify(params.meta)}` :''
+    // console.log('query',query)
     return (
-      httpClient(`${apiUrl}/${getResource(resource)}/${params.id}`)
+      httpClient(`${apiUrl}/${getResource(resource)}/${params.id}${query}`)
     // httpClient(`${apiUrl}/${resource}/${params.id}`)
         // .then(({json}) =>({data:json.data}));
         .then(({ json }) => {
-          console.log(json);
+          // console.log(json);
           return { data: json };
         })
     );
@@ -85,6 +92,7 @@ export const dataProvier: DataProvider = {
       filter: JSON.stringify({ ids: params.ids }),
     };
     const url = `${apiUrl}/${getResource(resource)}?${stringify(query)}`;
+    console.log(url)
     // const url = `${apiUrl}/${resource}?${stringify(query)}`;
     return httpClient(url).then(({ json }) => ({ data: json }));
   },

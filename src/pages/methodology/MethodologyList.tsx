@@ -1,7 +1,7 @@
 import ReviewTip from "@/components/ChipTip/ReviewTip";
 import SwitchList from "@/components/SwitchList";
 import { Fragment } from "react";
-import { Datagrid, TopToolbar, CreateButton, FunctionField, List, EditButton, DeleteButton } from "react-admin";
+import { Datagrid, TopToolbar, CreateButton, FunctionField, List, EditButton, DeleteButton, Show, ShowBase, ShowButton } from "react-admin";
 import {TitleField} from "@/components/TitleField";
 
 const ListActions = () => (
@@ -13,6 +13,7 @@ const ItemActions = ()=>(
   <Fragment>
     <EditButton resource="methodology"/>
     <DeleteButton resource="methodology"/>
+    <ShowButton resource="methodology"/>
   </Fragment>
 )
 const MethodologyList = () => {

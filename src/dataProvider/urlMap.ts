@@ -9,7 +9,7 @@ const urlMapping: Record<string, string> = {
     "user":"auth/admin/user",
     "scholar":"eduservice/admin/edu-scholar",
     "review":"eduservice/admin/edu-review",
-    "activity":"eduservice/admin/edu-activity"
+    "activity":"eduservice/admin/edu-activity",
 
     // add other mappings here
   };

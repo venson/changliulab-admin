@@ -9,11 +9,11 @@ import {
     UrlField,
 } from "react-admin";
 import {dataProvier} from "@/dataProvider";
-import React, {useEffect, useMemo, useState} from "react";
+import React, {memo, useEffect, useMemo, useState} from "react";
 import EditableBarChart from "@/components/BarChartEdit/chat";
 import {UrlLinkField} from "@/components/UrlLinkField";
 
-const ScholarEdit = () => {
+const ScholarEdit = memo(() => {
     // const [memberChoices, setMemberChoices] = useState([{id: 1, name:'example'}]);
     const [memberChoices, setMemberChoices] = useState<any[]>([]);
     const [editGoogle, setEditGoogle]  = useState(false);
@@ -47,12 +47,15 @@ const ScholarEdit = () => {
                         <TextInput className="w-3/4" source="title"/>
                         <TextInput className="w-1/4" source="titleLinkUrl"/>
                         <UrlLinkField  source="googleLink"
-                                       onClick={() =>setEditGoogle(!editGoogle)}>
+                                       onClick={() =>{setEditGoogle(!editGoogle)
+                                    console.log('editGoogle', editGoogle)}
+                                       }>
                             Google</UrlLinkField>
                         {/*<UrlField emptyText="xxx" source="googleLink"/>*/}
                     </Box>
 
-                    {editGoogle &&<TextInput source="googleLink" sx={{width: '100%'}}/>}
+                    {/* <TextInput className={editGoogle? '':'hidden'} source="googleLink" sx={{width: '100%'}}/> */}
+                    {editGoogle && <TextInput  source="googleLink" sx={{width: '100%'}}/> }
                     <Box className="flex justify-between gap-x-4">
                         <TextInput className="w-1/2" source="authors"/>
                         {multiSelect()}
@@ -78,5 +81,5 @@ const ScholarEdit = () => {
         </Edit>
 
     </div>
-}
+})
 export default ScholarEdit;

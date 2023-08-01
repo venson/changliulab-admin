@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { Route } from "react-router-dom";
 import "./App.css";
 import { Admin, CustomRoutes, Resource } from "react-admin";
 import { dataProvier } from "./dataProvider";
@@ -31,7 +29,11 @@ import {QueryClient} from 'react-query'
 import ScholarEdit from "@/pages/scholar/ScholarEdit";
 import ScholarList from "@/pages/scholar/ScholarList";
 import ScholarCreate from "@/pages/scholar/ScholarCreate";
-import Review from '@/pages/review/Review'
+import ReviewList from '@/pages/review/ReviewList'
+import ReviewEdit from "./pages/review/ReviewEdit";
+import { Route, Routes } from "react-router-dom";
+import MethodologyPreview from "./pages/methodology/MethodologyPreview";
+import ResearchPreview from "./pages/research/ResearchPreview";
 
 // const queryClient = new QueryClient({
 //   defaultOptions: {
@@ -68,6 +70,7 @@ function App() {
         list={ResearchList}
         edit={ResearchEdit}
         create={ResearchCreate}
+        show={ResearchPreview}
       />
 
       {/* // Activity */}
@@ -134,6 +137,7 @@ function App() {
         list={MethodologyList}
         edit={MethodologyEdit}
         create={MethodologyCreate}
+        show={MethodologyPreview}
       >
       </Resource>
 
@@ -149,13 +153,17 @@ function App() {
         name="review"
         options={{ label: "Review" }}
         icon={()=><Icon>play_lesson</Icon>}
-        list={Review}
-        edit={MethodologyEdit}
+        list={ReviewList}
+        edit={ReviewEdit}
       >
+        {/* <ReviewList/> */}
+        {/* <Route path="/review"  element={<ReviewList />}/> */}
       </Resource>
 
       {/* <CustomRoutes>
-        <Route path="/review"  element={<Review />}/>
+        <Routes>
+
+        </Routes>
       </CustomRoutes> */}
     </Admin>
   );

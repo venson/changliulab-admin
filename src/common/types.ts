@@ -1,4 +1,5 @@
 import { RaRecord } from "ra-core";
+import { Identifier } from "react-admin";
 
 export enum MemberLevel {
     INTERN = 'Intern',
@@ -17,10 +18,10 @@ export const MemberChoices = [
   {id: 'FORMER_MEMBER', name: MemberLevel.FORMER_MEMBER},
 ]
 export enum ReviewStatus {
-  'APPLIED',
-  'REJECTED',
-  'FINISHED',
-  'NONE'
+  'APPLIED' = 'APPLIED',
+  'REJECTED' = 'REJECTED',
+  'FINISHED' = 'FINISHED',
+  'NONE' = 'NONE'
 }
 
 export const actionChoices = [
@@ -35,3 +36,61 @@ export const actionChoices = [
     {id:'ENABLE', name:'Enable'},
     {id:'PUBLIC', name:'Public'},
 ]
+
+export enum ReviewAction  {
+  'REQUEST' = 'REQUEST',
+  'PASS' = 'PASS',
+  'REJECT' = 'REJECT',
+}
+export enum ReviewType{
+  'ACTIVITY'= 'ACTIVITY',
+  'COURSE' = 'COURSE',
+  'RESEARCH'= 'RESEARCH',
+  'METHODOLOGY'= 'METHODOLOGY', 
+  'SYLLABUS' = 'SYLLABUS',
+  'SECTION' = 'SECTION',
+  'CHAPTER' = 'CHAPTER',
+}
+
+export interface ReviewDTO{
+  refId: string;
+  refType: ReviewType;
+  status: ReviewStatus;
+  id: string;
+  gmtCreated: Date;
+  gmtModified: Date;
+}
+
+export interface Syllabus {
+  id:Identifier;
+  title: string;
+  // show: boolean;
+  // checked: boolean;
+  type: ReviewType;
+  children: Syllabus[];
+  review: ReviewStatus;
+  isRemoveAfterReview: boolean;
+  isModified: boolean;
+
+}
+
+export interface ChapterView{
+  id: string;
+  title: string;
+  description: string;
+}
+export interface ChapterView{
+  id: string;
+  title: string;
+  html: string;
+  videoLink: string;
+}
+
+export interface ReviewItem{
+  id:Identifier;
+  type:ReviewType;
+}
+export enum TreeType{
+  PREVIEW,
+  REVIEW
+}
