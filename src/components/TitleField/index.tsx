@@ -26,7 +26,7 @@ export const TitleField: FC<TitleFieldProps> = memo(props => {
             {value != null && typeof value !== 'string'
                 ? JSON.stringify(value)
                 : value || emptyText}
-                {isUpdated && <span className='text-xs italic text-green-600'> New</span>}
+                {isUpdated && <span className='text-xs italic text-green-600'> M</span>}
                 {isPublished && <span className='text-xs italic text-red-400'> Published</span>}
         </Typography>
     );
