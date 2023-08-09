@@ -1,6 +1,6 @@
 import { Editor } from "@bytemd/react";
 import gfm from "@bytemd/plugin-gfm";
-import { Button, CommonInputProps, useInput } from "react-admin";
+import { Button, CommonInputProps, ListButton, SaveButton, useInput } from "react-admin";
 import math from "@bytemd/plugin-math";
 import mermaid from "@bytemd/plugin-mermaid";
 import pako from "pako";
@@ -8,7 +8,7 @@ import pako from "pako";
 import "bytemd/dist/index.css";
 import "./src/markdown.css";
 import { bytesToBase64 } from "@/common/utils/base64";
-import { MouseEventHandler, ReactEventHandler, forwardRef, useImperativeHandle } from "react";
+import { MouseEventHandler, MutableRefObject, ReactEventHandler, Ref, forwardRef, useImperativeHandle } from "react";
 import { resolve } from "path";
 
 const plugins = [
@@ -60,4 +60,16 @@ const MdInput = forwardRef((props: MarkdownInputProps, ref) => {
     </div>
   );
 });
+interface RenderMarkdownSaveProps {
+  mRef: MutableRefObject<any>;
+}
+export const RenderMarkdownSave = ({mRef}:RenderMarkdownSaveProps) => {
+  return (
+    <div
+    className="m-4 flex justify-between">
+  <SaveButton onClick={()=> mRef.current?.saveHtml()} />
+  <ListButton/>
+    </div>
+  )
+}
 export default MdInput;
