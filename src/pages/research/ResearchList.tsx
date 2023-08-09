@@ -7,7 +7,7 @@ import {
     TextField,
     TopToolbar,
     CreateButton,
-    WrapperField, BooleanField
+    WrapperField, BooleanField, ShowButton
 
 } from "react-admin";
 import ReviewTip from "@/components/ChipTip/ReviewTip";
@@ -24,6 +24,7 @@ const ItemActions = () => (
     <Fragment>
         <EditButton/>
         <DeleteButton/>
+        <ShowButton />
     </Fragment>
 );
 const ResearchList = () => {

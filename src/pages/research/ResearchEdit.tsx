@@ -1,14 +1,15 @@
-import MdInput from "@/components/MdInput";
+import MdInput, { RenderMarkdownSave } from "@/components/MdInput";
 import ReactMdInput from "@/components/ReactMdInput";
 import { Box } from "@mui/material";
-import {Edit, SelectArrayInput, SimpleForm, TextInput, useDataProvider} from "react-admin";
+import {Edit, SelectArrayInput, SaveButton, SimpleForm, TextInput, useDataProvider} from "react-admin";
 import {dataProvier} from "@/dataProvider";
-import React, {useEffect, useMemo, useState} from "react";
+import React, {memo, useEffect, useMemo, useRef, useState} from "react";
 
-const ResearchEdit = () =>{
+const ResearchEdit = memo(() =>{
     // const [memberChoices, setMemberChoices] = useState([{id: 1, name:'example'}]);
     const [memberChoices, setMemberChoices] = useState<any[]>([]);
     const [isLoading, setIsLoading]  = useState(true);
+    const markdownRef = useRef<any>(); 
     useEffect(() =>{
         // setIsLoading(true)
         const getMembers = async ()=>{
@@ -24,10 +25,16 @@ const ResearchEdit = () =>{
         return isLoading ? null:
         <SelectArrayInput source="member" choices={memberChoices} />
     }
+const RenderEditActions = () => {
+    return (
+        <SaveButton onClick={() => markdownRef.current?.saveHtml()} />
+        // <SaveButton />
+    )
+}
     console.log('member',memberChoices)
     return <div>
         <Edit>
-            <SimpleForm >
+            <SimpleForm toolbar={<RenderMarkdownSave mRef={markdownRef}/>} >
                 <Box display={{sm: 'flex' ,width: '100%'}}>
 
                 <Box flex={3} mx={2}>
@@ -37,12 +44,12 @@ const ResearchEdit = () =>{
                     {multiSelect()}
                 </Box>
                 </Box>
-                <MdInput source="markdown" html="htmlBrBase64"/>
+                <MdInput ref={markdownRef} source="markdown" html="htmlBrBase64"/>
             </SimpleForm>
 
 
         </Edit>
 
     </div>
-}
+})
 export default ResearchEdit;

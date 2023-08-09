@@ -12,7 +12,7 @@ const Title = ()=>{
 const MethodologyEdit = ()=>{
 
   const markdownRef = useRef<any>(); // add type any to the useRef hook
-const RenderActions = () => {
+const RenderEditActions = () => {
     return (
         <SaveButton onClick={() => markdownRef.current?.saveHtml()} />
         // <SaveButton />
@@ -20,7 +20,7 @@ const RenderActions = () => {
 }
     return (
         <Edit  title={<Title/>} >
-            <SimpleForm toolbar={<RenderActions />}>
+            <SimpleForm toolbar={<RenderEditActions />}>
                 <TextInput source="title" sx={{width: '100%'}}/>
                 <MdInput ref={markdownRef} source="markdown" html="htmlBrBase64"/>
             </SimpleForm>
